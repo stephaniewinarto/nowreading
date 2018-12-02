@@ -1,8 +1,8 @@
 <html>
   <head>
 
-    <link rel="stylesheet" href="flickity.min.css">
-    <script src="flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <style>
       /* external css: flickity.css */
@@ -34,10 +34,12 @@
         width:100%;
       }
 
+
       .title {
         grid: 1/2;
         width:100%;
       }
+
 
 
 
@@ -50,14 +52,39 @@
     <div class="wrapper">
       <div class="title"> <img src="assets/title.png"></div>
       <div class="carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
-        <img src="assets/book1.png"/>
-        <img src="assets/book2.png"/>
+        <img id="kite" src="assets/book1.png"/>
+        <img id="indian" src="assets/book2.png"/>
         <img src="assets/book3.png"/>
       </div>
+
+      <audio id="book1">  <source src="assets/book1.mp3" type="audio/mpeg">
+      <audio id="book2">  <source src="assets/book2.mp3" type="audio/mpeg">
+
+    </audio>
 
     </div>
 
   </body>
+
+  <script>
+
+    var audio1 = document.getElementById('book1');
+    var audio2 = document.getElementById('book2');
+    var audio3 = document.getElementById('book3');
+
+    $( "#kite" ).click(function() {
+      audio1.play();
+      audio2.pause();
+    });
+
+    $( "#indian" ).click(function() {
+      audio2.play();
+      audio1.pause();
+
+    });
+
+  </script>
+
 
 
 </html>
