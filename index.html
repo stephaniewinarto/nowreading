@@ -3,7 +3,8 @@
 
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>
+
     <style>
       /* external css: flickity.css */
 
@@ -25,7 +26,12 @@
         height:100%;
       }
 
-      .carousel img {
+      .carousel .item-1{
+        display: block;
+        height: 100%;
+      }
+
+      .carousel .item-1 .book{
         display: block;
         height: 100%;
       }
@@ -40,6 +46,13 @@
         width:100%;
       }
 
+      .play { display :block;
+              position:  absolute;
+              top: 66%;
+              left: 47%;
+              width: 6%;
+      }
+
 
 
 
@@ -52,13 +65,17 @@
     <div class="wrapper">
       <div class="title"> <img src="assets/title.png"></div>
       <div class="carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
-        <img id="kite" src="assets/book1.png"/>
-        <img id="indian" src="assets/book2.png"/>
-        <img src="assets/book3.png"/>
+        <div class='item-1'><img class="book" id="kite" src="assets/book1.png"/><img id="kite_audio" class="play" src="assets/play.png"/></div>
+        <div class='item-1'> <img  class="book" id="indian" src="assets/book2.png"/><img id="india_audio" class="play" src="assets/play.png"/></div>
+        <div class='item-1'><img  class="book" id="tango" src="assets/book3.png"/><img id="tango_audio" class="play" src="assets/play.png"/></div>
+
+
       </div>
 
       <audio id="book1">  <source src="assets/book1.mp3" type="audio/mpeg">
       <audio id="book2">  <source src="assets/book2.mp3" type="audio/mpeg">
+      <audio id="book3">  <source src="assets/book3.mp3" type="audio/mpeg">
+
 
     </audio>
 
@@ -68,21 +85,92 @@
 
   <script>
 
+
     var audio1 = document.getElementById('book1');
     var audio2 = document.getElementById('book2');
     var audio3 = document.getElementById('book3');
 
-    $( "#kite" ).click(function() {
-      audio1.play();
-      audio2.pause();
-    });
 
-    $( "#indian" ).click(function() {
-      audio2.play();
-      audio1.pause();
+    var open = false;
 
-    });
+      $( "#kite_audio" ).click(function() {
+        open = !open;
+         if(open) {
+           $(this).attr('src','assets/pause.png');
+             audio1.play();
+             audio2.pause();
+             audio3.pause();
+           } else {
+             $(this).attr('src','assets/play.png');
+               audio1.pause();
+               audio2.pause();
+               audio3.pause();
+           }
+         }
+        );
 
+
+      $( "#india_audio" ).click(function() {
+        open = !open;
+         if(open) {
+           $(this).attr('src','assets/pause.png');
+             audio1.pause();
+             audio2.play();
+             audio3.pause();
+           } else {
+             $(this).attr('src','assets/play.png');
+               audio1.pause();
+               audio2.pause();
+               audio3.pause();
+           }
+         }
+        );
+
+      $( "#tango_audio" ).click(function() {
+        open = !open;
+         if(open) {
+           $(this).attr('src','assets/pause.png');
+             audio1.pause();
+             audio2.pause();
+             audio3.play();
+           } else {
+             $(this).attr('src','assets/play.png');
+               audio1.pause();
+               audio2.pause();
+               audio3.pause();
+           }
+         }
+        );
+
+        $( "#kite" ).click(function() {
+          open = !open;
+           if(open) {
+             $(this).attr('src','assets/book1_b.png');
+             } else {
+               $(this).attr('src','assets/book1.png');
+             }
+           }
+      );
+
+      $( "#india" ).click(function() {
+        open = !open;
+         if(open) {
+           $(this).attr('src','assets/book2_b.png');
+           } else {
+             $(this).attr('src','assets/book2.png');
+           }
+         }
+    );
+
+    $( "#tango" ).click(function() {
+      open = !open;
+       if(open) {
+         $(this).attr('src','assets/book3_b.png');
+         } else {
+           $(this).attr('src','assets/book3.png');
+         }
+       }
+  );
   </script>
 
 
